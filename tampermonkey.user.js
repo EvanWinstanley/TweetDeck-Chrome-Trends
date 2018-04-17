@@ -12,12 +12,6 @@
 (function(window) {
     var $ = window.$, _ = window._, TD = window.TD, _gaq = window._gaq;
 
-    var oldIsFilterable = TD.vo.Column.prototype.isFilterable;
-    TD.vo.Column.prototype.isFilterable = _.wrap(oldIsFilterable, function (func) {
-        if (this.getColumnType() === 'col_unknown') return true;
-        return func.call(this);
-    });
-
     TD.services.TwitterClient.prototype.getTrendsCustom = function(params, success, error) {
         this.makeTwitterCall(
             this.API_BASE_URL+"trends/place.json",
